@@ -1,11 +1,3 @@
-/*****************************************************************************\
-** mandelbrot sample program for cc65.                                       **
-**                                                                           **
-** (w) 2002 by groepaz/hitmen, TGI support by Stefan Haubenthal              **
-\*****************************************************************************/
-
-
-
 #include <stdlib.h>
 #include <conio.h>
 #include <tgi.h>
