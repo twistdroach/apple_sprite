@@ -1,15 +1,17 @@
 PGM=adder
-
-$(PGM):
-	cl65 -t apple2enh -O $(PGM).c
-	java -jar AppleCommander-ac-1.6.0.jar -d $(PGM).po $(PGM)
-	java -jar AppleCommander-ac-1.6.0.jar -as $(PGM).po $(PGM) < $(PGM)
-	open $(PGM).po
-
 .PHONY: clean all
 
+all: $(PGM).po
+	open $(PGM).po
+
+$(PGM): $(PGM).c
+	cl65 -t apple2enh -O $(PGM).c
+
+$(PGM).po: $(PGM)
+	cp -f bootable.po $(PGM).po
+	cat $(PGM) | java -jar AppleCommander-ac-1.6.0.jar -as $(PGM).po $(PGM)
+
 clean:
-	@rm -f *.o $(PGM)
+	rm -f $(PGM).po $(PGM) *.o
 	@echo All clean.
 
-all: $(PGM)
